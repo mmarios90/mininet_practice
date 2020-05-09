@@ -1,0 +1,27 @@
+A simple Spanning Tree (Leaf-Spine) topology of 16 hosts and 20 switched
+organised in three layers (1.access-edge layer(s1-18), 2.aggregation layer(s9-s16), and 3.the
+core-spine layer(s17-s20). Each switch in access layer connects to two host directly and also is connected with
+two switches of aggregation layer as shown below. This complex linking offers multiple alternative routes for each
+host and node, to communicate to another one. That topology serves well in cases when a link fails or being overload,
+by having the alternative routes.
+
+Because of the ST loops problem in such topologies, before starting this topology, run the pox controller, as follows:
+
+sudo pox/pox.py forwarding.l2_learning openflow.discovery --eat-early-packets openflow.spanning_tree --no-flood --hold-down
+
+
+s17    s18   s19   s20         
+ |      |    |    /       .      .    .     .
+ |      |    /   /         .      .    .     .
+ |      /   /   /           \      \    \     \
+ |     /   /   /           (s17) (s18) (s19) (s20)
+ |    /   /   /               \   |     |    /
+ |   /   /   /                 \  |     |   /
+ |  /   /  _/                   \ |     |  /
+  s9   s10      . . . . . . .   s15    s16
+ |  \ /  |                       |  \ /  |
+ |  / \  |                       |  / \  |
+ s1     s2      . . . . . . .    s7     s8 
+|  |   |  |                     /  \    |  \
+h1 h2  h3 h4                  h13  h14  h15 h16 
+
