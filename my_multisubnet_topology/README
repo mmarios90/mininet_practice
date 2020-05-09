@@ -1,4 +1,4 @@
-This code creates a topology, consisting 12 hosts, 6 switches and 2 routers.
+This code creates a topology, consisting of 12 hosts, 6 switches and 2 routers.
 Each router, routes three subnets and also connects them to the other router's subnets via
 a link (subnet) between them. In other words, each switch functions in a particular subnet(lan),
 defined by the specific router's port, which is connected to.
